@@ -1,0 +1,104 @@
+public class Main {
+
+    static class Course {
+
+        private String name;
+        private String instructor;
+        private int credits;
+
+        public Course(String name, String instructor, int credits) {
+            this.name = name;
+            this.instructor = instructor;
+            this.credits = credits;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getInstructor() {
+            return instructor;
+        }
+
+        public int getCredits() {
+            return credits;
+        }
+
+        public String toString() {
+            return "Course{name='" + name +
+                    "', instructor='" + instructor +
+                    "', credits=" + credits + "}";
+        }
+    }
+
+    static class AssignmentTask {
+
+        private String title;
+        private Course course;
+        private int estimatedHours;
+        private int daysUntilDue;
+        private boolean completed;
+
+        public AssignmentTask(String title, Course course, int estimatedHours, int daysUntilDue) {
+            this.title = title;
+            this.course = course;
+            this.estimatedHours = estimatedHours;
+            this.daysUntilDue = daysUntilDue;
+            this.completed = false; // по умолчанию
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public Course getCourse() {
+            return course;
+        }
+
+        public int getEstimatedHours() {
+            return estimatedHours;
+        }
+
+        public int getDaysUntilDue() {
+            return daysUntilDue;
+        }
+
+        public boolean isCompleted() {
+            return completed;
+        }
+
+        public void markCompleted() {
+            completed = true;
+        }
+
+        public boolean isUrgent() {
+            return daysUntilDue <= 2 && !completed;
+        }
+
+        public String toString() {
+            return "AssignmentTask{title='" + title +
+                    "', course='" + course.getName() +
+                    "', estHours=" + estimatedHours +
+                    ", dueIn=" + daysUntilDue +
+                    ", completed=" + completed + "}";
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Course oop = new Course("OOP", "Dr. Lee", 6);
+
+        AssignmentTask task1 = new AssignmentTask("Lab2", oop, 3, 1);
+        AssignmentTask task2 = new AssignmentTask("Project", oop, 10, 5);
+
+        System.out.println(task1);
+        System.out.println("Is urgent? " + task1.isUrgent());
+
+        task1.markCompleted();
+
+        System.out.println(task1);
+        System.out.println("Is urgent? " + task1.isUrgent());
+
+        System.out.println(task2);
+    }
+}
