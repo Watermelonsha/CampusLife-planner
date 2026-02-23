@@ -1,0 +1,47 @@
+public class Main {
+
+    static class Course {
+
+        private String name;
+        private String instructor;
+        private int credits;
+
+        public Course(String name, String instructor, int credits) {
+            this.name = name;//даемимяя симбооо
+            this.instructor = instructor;//слева это сам клаассс, а справа  как бы делает испонитель
+            this.credits = credits;//тут названияну как бы переменки гле вче хнарится,типа имя, коедиты и т д
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getInstructor() {
+            return instructor;
+        }
+
+        public int getCredits() {
+            return credits;
+        }
+
+        public String toString() {
+            return "Course{name='" + name +
+                    "', instructor='" + instructor +
+                    "', credits=" + credits + "}";
+        }
+    }
+
+//мэйнспособь
+    public static void main(String[] args) {
+
+        Course course1 = new Course("OOP", "Dr. Lee", 6); //этоуже дано тамм
+        Course course2 = new Course("Mathematics", "Dr. Smith", 3);//две шутки создали
+
+        System.out.println(course1);//дальше гатерыпозвны и он и все наэкранн показывают
+        System.out.println(course2);
+
+        System.out.println("Course name: " + course1.getName());
+        System.out.println("Instructor: " + course1.getInstructor());
+        System.out.println("Credits: " + course1.getCredits());
+    }
+}//а ещк курс.ту стринг это то же самое что и систем ауртр принтлн только там ньюансики
