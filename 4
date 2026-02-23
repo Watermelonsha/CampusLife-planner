@@ -1,0 +1,56 @@
+StudySession(english, 45)
+        };
+
+        //тут мы вч е курсы написали 
+        System.out.println("=== COURSES ===");
+        for (Course c : courses) {
+            System.out.println(c);
+        }
+
+        // эсайджээмээээннн. т.    тттььбуьоа
+        System.out.
+                println("\n=== ASSIGNMENTS ===");
+        for (AssignmentTask t : tasks) {
+            if (t.isUrgent()) {
+                System.out.println(t + "  <-- URGENT");
+            } else {
+                System.out.println(t);
+            }
+        }
+
+        // часытоталы
+        int totalHours = 0;
+        for (AssignmentTask t : tasks) {
+            if (!t.isCompleted()) {
+                totalHours += t.getEstimatedHours();
+            }
+        }
+        System.out.println("\nTotal remaining estimated hours: " + totalHours);
+
+        // всегопочасам
+        System.out.println("\n=== TOTAL STUDY TIME PER COURSE ===");
+        for (Course c : courses) {
+            double totalStudy = 0;
+            for (StudySession s : sessions) {
+                if (s.getCourse().getName().equals(c.getName())) {
+                    totalStudy += s.hours();
+                }
+            }
+            System.out.println(c.getName() + ": " + totalStudy + " hours");
+        }
+
+        //комплитед отмечает
+        System.out.println("\n=== AFTER COMPLETING ONE ASSIGNMENT ===");
+        tasks[0].markCompleted();
+        System.out.println("Updated: " + tasks[0]);
+
+        //часы
+        totalHours = 0;
+        for (AssignmentTask t : tasks) {
+            if (!t.isCompleted()) {
+                totalHours += t.getEstimatedHours();
+            }
+        }
+        System.out.println("New remaining estimated hours: " + totalHours);
+    }
+}
