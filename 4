@@ -1,3 +1,113 @@
+public class CampusLifeApp {
+    // КУУУРС 
+    static class Course { //класкурсэ
+        private String name;//тут переменные с именаминг намээ иньторукторр кредитыы
+        private String instructor;
+        private int credits;
+
+        public Course(String name, String instructor, int credits) {
+            this.name = name; //ту мы их призываем получается
+            this.instructor = instructor;
+            this.credits = credits;
+        }
+
+        public String getName() { return name; }
+        public String getInstructor() { return instructor; }
+        public int getCredits() { return credits; }
+
+        public String toString() {
+            return "Course{name='" + name +
+                    "', instructor='" + instructor +
+                    "', credits=" + credits + "}";
+        }
+    }
+
+    static class AssignmentTask {
+        private String title;//названте
+        private Course course;//какойкурс
+        private int estimatedHours;//сколькоаурс
+        private int daysUntilDue;//через сколлько мучтельных дней
+        private boolean completed;//сдано ил нет
+
+        public AssignmentTask(String title, Course course, //конструкторр
+                              int estimatedHours, int daysUntilDue) {
+            this.title = title;
+            this.course = course;
+            this.estimatedHours = estimatedHours;
+            this.daysUntilDue = daysUntilDue;
+            this.completed = false;//ну по умолчанию человек ничего не сделал пока там че то не произойдет
+        }
+
+        public String getTitle() { return title; }
+        public Course getCourse() { return course; }//паблик ретерн и т д
+        public int getEstimatedHours() { return estimatedHours; }
+        public int getDaysUntilDue() { return daysUntilDue; }
+        public boolean isCompleted() { return completed; }
+
+        public void markCompleted() {
+            completed = true; //тут комплитед, красава ты все сделал
+        }
+
+        public boolean isUrgent() {
+            return daysUntilDue <= 2 && !completed;
+        }
+
+        public String toString() {
+            return "AssignmentTask{title='" + title +
+                    "', course='" + course.getName() +
+                    "', estHours=" + estimatedHours +
+                    ", dueIn=" + daysUntilDue +
+                    ", completed=" + completed + "}";
+        }
+    }
+
+    // стадиии сэщьиииооон
+    static class StudySession { 
+        private Course course;
+        private int minutes;
+
+        public StudySession(Course course, int minutes) {
+            this.course = course;
+            this.minutes = minutes;
+        }
+
+        public Course getCourse() { return course; }
+        public int getMinutes() { return minutes; }
+
+        public double hours() {
+            return minutes / 60.0; //ну чтоб легч воспринималось делаем дробнымтипп
+        }
+
+        public String toString() {
+            return "StudySession{course='" +
+                    course.getName() +
+                    "', minutes=" + minutes + "}";
+        }
+    }
+
+    public static void main(String[] args) {
+
+        //курсе и это мэйнн
+        Course oop = new Course("OOP", "Dr. Lee", 6);
+        Course discrete = new Course("Discrete Math", "Dr. Kim", 5);
+        Course english = new Course("English", "Ms. Brown", 3);
+
+        Course[] courses = {oop, discrete, english};
+
+        //эсаймэнтаскии
+        AssignmentTask[] tasks = {
+                new AssignmentTask("Lab1", oop, 3, 1),
+                new AssignmentTask("Project", oop, 10, 5),
+                new AssignmentTask("HW2", discrete, 4, 2),
+                new AssignmentTask("Essay", english, 2, 0),
+                new AssignmentTask("Quiz Prep", discrete, 3, 4)
+        };
+
+        StudySession[] sessions = {
+                new StudySession(oop, 90),
+                new StudySession(discrete, 120),
+                new StudySession(oop, 60),
+                new
 StudySession(english, 45)
         };
 
@@ -9,7 +119,7 @@ StudySession(english, 45)
 
         // эсайджээмээээннн. т.    тттььбуьоа
         System.out.
-                println("\n=== ASSIGNMENTS ===");
+                println(" === ASSIGNMENTS ===");
         for (AssignmentTask t : tasks) {
             if (t.isUrgent()) {
                 System.out.println(t + "  <-- URGENT");
@@ -25,10 +135,10 @@ StudySession(english, 45)
                 totalHours += t.getEstimatedHours();
             }
         }
-        System.out.println("\nTotal remaining estimated hours: " + totalHours);
+        System.out.println(".  Total remaining estimated hours: " + totalHours);
 
         // всегопочасам
-        System.out.println("\n=== TOTAL STUDY TIME PER COURSE ===");
+        System.out.println(".   === TOTAL STUDY TIME PER COURSE ===");
         for (Course c : courses) {
             double totalStudy = 0;
             for (StudySession s : sessions) {
@@ -40,7 +150,7 @@ StudySession(english, 45)
         }
 
         //комплитед отмечает
-        System.out.println("\n=== AFTER COMPLETING ONE ASSIGNMENT ===");
+        System.out.println(".    === AFTER COMPLETING ONE ASSIGNMENT ===");
         tasks[0].markCompleted();
         System.out.println("Updated: " + tasks[0]);
 
